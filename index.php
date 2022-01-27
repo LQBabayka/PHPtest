@@ -226,11 +226,11 @@ echo "<br>";
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Циклы
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Есть циклы: while, do while и for (foreach для массивов будет отдельно)
+//Есть циклы: while, do while и for (foreach для массивов будет отдельно)
 echo "Цикл while: <br>";
 $count_a = 1;
-while ($count_a <= 5) {//Начинает считать с 1
-  echo "Число $count_a, умноженное на 12, равно " . $count_a * 12 . "<br>";// Если несколько строк то нужны {}
+while ($count_a <= 5) { //Начинает считать с 1
+  echo "Число $count_a, умноженное на 12, равно " . $count_a * 12 . "<br>"; // Если несколько строк то нужны {}
   ++$count_a;
 }
 //Можно укоротить цикл while так: while (++$count_a <= 5), но счёт начнется с инкремента, те с 2 (1 + ++)
@@ -250,9 +250,9 @@ for ($count_c = 0; $count_c < 3; $count_c++) { //Начинает считать
 
 echo "Прекращение работы циклов, команда break: <br>";
 $x_1 = 0;
-while ($x_1++ <10) {
-if ($x_1 == 3) break; // Когда $x равен 3, цикл прерывается, выведется только итерация 1 и 2
-echo "<b>Итерация $x_1</b><br>";
+while ($x_1++ < 10) {
+  if ($x_1 == 3) break; // Когда $x равен 3, цикл прерывается, выведется только итерация 1 и 2
+  echo "<b>Итерация $x_1</b><br>";
 }
 
 echo "Прекращение работы циклов, команда continue: <br>";
@@ -280,13 +280,23 @@ echo 'Для приведения в целое число можно испол
 
 //ля того, чтобы узнать тип использую gettype(),(typeof() в JS):
 $b = "10";
-echo gettype($b);  // string
+echo gettype($b) . "<br>";  // string
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Функции (подробнее)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
+$x = 11;
+$y = 22;
 
-//   echo "Использование переменной возвращенной функцией: " . $newNum;
+function sumMe($x, $y)
+{
+  $sum = $x + $y;
+  echo $sum . "<br>";
+}
+
+sumMe(44, 45); //89
+sumMe($x, $y);
+
 //Пример функции и её вызова
 /*
 // echo fix_names("WILLIAM", "henry", "gatES");
@@ -299,19 +309,48 @@ echo gettype($b);  // string
 */
 
 //Пример вызова функции и возврата нескольких переменных в массиве:
-$names = fix_names("WILLIAM", "henry", "gatES");
-// echo gettype($names);
+// $names = fix_names("WILLIAM", "henry", "gatES");
+// // echo gettype($names);
 
 
-function fix_names($n1, $n2, $n3) {
-    $n1 = ucfirst(strtolower($n1));
-    $n2 = ucfirst(strtolower($n2));
-    $n3 = ucfirst(strtolower($n3));
-    return array($n1, $n2, $n3);
+// function fix_names($n1, $n2, $n3) {
+//     $n1 = ucfirst(strtolower($n1));
+//     $n2 = ucfirst(strtolower($n2));
+//     $n3 = ucfirst(strtolower($n3));
+//     return array($n1, $n2, $n3);
+// }
+
+// echo $names[0] . " " . $names[1] . " " . $names[2] . "<br>";
+
+//Пример использования ссылки на переменную для функции:
+$an1 = "WILLIAM";
+$an2 = "henry";
+$an3 = "gates";
+
+echo $an1 . " " . $an2 . " " . $an3 . " //from line " . __LINE__ . "<br>";//так как в переменных
+fix_names($an1, $an2, $an3);
+echo $an1 . " " . $an2 . " " . $an3 . " //from line " . __LINE__ . "<br>";//после отработки функции переменные переписались без return'а
+
+function fix_names(&$n1, &$n2, &$n3)
+{
+  $n1 = ucfirst(strtolower($n1));
+  $n2 = ucfirst(strtolower($n2));
+  $n3 = ucfirst(strtolower($n3));
 }
 
-echo $names[0] . " " . $names[1] . " " . $names[2];
+echo "After that string an1 is " . $an1 . " //from line " . __LINE__ . "<br>";
 
-//остановился на ссылке на аргумент (к примеру, если внутри функции объявить переменную, то к ней возможно обратиться без возвращения значения - по ссылке)
+////////функции передача переменных по ссылке, пример с ютуба
+function reName1($newName1, &$otherName = false){//без задания значения выходит ошибка
+  echo $newName1 . " //from line " . __LINE__ . "<br>";
+  $otherName = "Incredible";
+}
+
+reName1('Evstafya', $otherName);
+echo $otherName . " //from line " . __LINE__ . "<br>";//Incredible
+var_dump($otherName)
+
+
+//остановился на возвращении глобальных переменных
 
 ?>
