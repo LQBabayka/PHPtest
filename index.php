@@ -348,9 +348,21 @@ function reName1($newName1, &$otherName = false){//без задания зна�
 
 reName1('Evstafya', $otherName);
 echo $otherName . " //from line " . __LINE__ . "<br>";//Incredible
-var_dump($otherName)
+var_dump($otherName);
+echo "<br>";
 
+//Пример возвращения массива с переменными из вункции и создание новых в области видимости
+function formatSize($bytes) {
+  $kbytes = $bytes / 1024;
+  $mbytes = $kbytes / 1024;
+  $gbytes = $mbytes / 1024;
+  return [$bytes, $kbytes, $mbytes, $gbytes];
+}
 
-//остановился на возвращении глобальных переменных
+list($bytesR, $kbytesR, $mbytesR, $gbytesR) = formatSize(65090888);
+echo "bytesR = $bytesR" . "<br>" . "kbytesR = $kbytesR" . "<br>" . "mbytesR = $mbytesR" . "<br>" . "gbytesR = $gbytesR" . "<br>";
+
+//в книге остановился на возвращении глобальных переменных
+//полезная ссылка https://www.youtube.com/watch?v=0CDDQTaGDhg&ab_channel=ITDoctor
 
 ?>
