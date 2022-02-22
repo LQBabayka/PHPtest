@@ -36,6 +36,7 @@ echo "блаблабла";
 
 <body>
   <h1>блаблабла</h1> <br>
+  <a href="html.php">PHP файл </a>
 </body>
 
 </html>
