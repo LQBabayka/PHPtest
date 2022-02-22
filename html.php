@@ -38,5 +38,5 @@
     ?>
     <p>Продолжение первой страницы</p>
 </body>
-<!--https://www.youtube.com/playlist?list=PLuY6eeDuleIN_pFzp1vlu0PD3KXUrPTVS-->
+<!--https://www.youtube.com/playlist?list=PLuY6eeDuleIN_pFzp1vlu0PD3KXUrPTVS-->  
 </html>
