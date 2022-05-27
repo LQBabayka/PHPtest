@@ -29,7 +29,11 @@ echo $firstVAR .= $anotherFloat_number; //Первая переменная234.5
 $example = 'определённая строка';
 echo 'хочу отсекать ненужные переменные, такие как $example';
 echo "а тут хочу увидеть значение $example";
-echo "блаблабла";
+echo "блаблабла" . "<br>";
+//Как к переменной присоеденить другое значение
+$someV = 'Маши ';
+$someV .= " 10 яблок";//Прибавляет новое значение к имеющейся переменной
+echo "У " . $someV; 
 ?>
 
 <html>
@@ -70,6 +74,18 @@ echo "<br>";
 $konst_test = KONSTANTA;
 echo $konst_test;
 echo "<br>";
+
+//Использование констант внутри класса:
+class ConstClass {
+  const NAMEZ = "str"; //В этом случае нельзя использовать -> (ConstClass->NAMEZ) будет ошибка
+  public static $simple = "dimple" . "<br>";
+}
+if (defined('ConstClass::NAMEZ')) { //defined проверяет наличие переменной
+  echo "Переменная определена и равна " . ConstClass::NAMEZ . "<br>";
+  echo  ConstClass::$simple;
+} else {
+  echo "Переменная не определена";
+}
 
 //Использование стоковых (волшебных) констант
 echo "Это строка" . __LINE__ . "в файле " . __FILE__ . " в директории " . __DIR__ . "<br>";
