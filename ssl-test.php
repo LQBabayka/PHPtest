@@ -88,7 +88,7 @@ function getAllSSL() {
 <script>
     $(document).ready(function() {
 console.log("document.ready");
-toastr.warning(' осталось ' +  <?php echo $interval->format('%d');?>  + ' дней');
+toastr.warning(`<?php echo 'Истечет срок сертификата портала ' . $value . ' через ' . $interval->format('%d') . ' дней';?>`);
 });
 </script>
 <?php
