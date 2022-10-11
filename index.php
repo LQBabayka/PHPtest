@@ -421,7 +421,20 @@ function formatSize($bytes) {
 list($bytesR, $kbytesR, $mbytesR, $gbytesR) = formatSize(65090888);
 echo "bytesR = $bytesR" . "<br>" . "kbytesR = $kbytesR" . "<br>" . "mbytesR = $mbytesR" . "<br>" . "gbytesR = $gbytesR" . "<br>";
 
-//в книге остановился на возвращении глобальных переменных
+
+//Пример использования инклюда
+include 'foreinclude.php';
+
+//Пример использования require
+require 'foreReqouire.php';
+//Стоит использывать include_once и require_once чтобы не было проблем с несколькими объявлениями переменных
+
+
+
+
+
+
+//в книге остановился на конструкторах ст 143
 //полезная ссылка https://www.youtube.com/watch?v=0CDDQTaGDhg&ab_channel=ITDoctor
 
 //в видосах на https://www.youtube.com/watch?v=nWjvvM608yw&ab_channel=ITDoctor
