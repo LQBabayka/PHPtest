@@ -48,34 +48,44 @@ $object4->options1 = 'Скопировал и заменил';
 
 echo '$object3 options1 is ' . $object3->options1 . "<br>";
 echo '$object4 options1 is ' . $object4->options1 . "<br>";
-//В результате свойство будет равно 'Скопировал и заменил'. Оба свойства ссылаются на один и тот же объект.
+//В результате свойство будет равно 'Скопировал и заменил'. Оба свойства ссылаются на один и тот же объект (так себе практика).
 
 ////////////////////////////////////////////////
 //Клонирование объекта - не работает в таком виде
 ////////////////////////////////////////////////
-// class CloneExample {
-//     public $options2;
-// }
+class CloneExample {
+    public $options2;
+    public function __clone() {
+        echo 'Это сообщение выйдет при клонировании объекта' . "<br>";
+    }
+}
 
-// $object5 = new CloneExample;
-// $object5->$options2 = 'Задал значение';
+$object5 = new CloneExample;
+$object5->$options2 = 'Задал значение';
 
-// $object6 = clone $object5;
-// $object6->$options2 = 'Склонировал, а потом задал значение';
+$object6 = clone $object5;
+$object6->$options2 = 'Склонировал, а потом задал значение';
+
+echo '$object5->$options2 is: ' . $object5->$options2 . "<br>";
+echo '$object6->$options2 is: ' . $object6->$options2 . "<br>" . "<br>";
 
 ////////////////////////////////////////////////
-//Работа конструктора
+//Работа конструктора и деструктора
 ////////////////////////////////////////////////
 class Example3 {
     public $name, $age;
 
-    public function __construct($name, $age) {
+    public function __construct($name, $age) { //Выполняется для передачи классу аргументов
         $this->name = $name;
         $this->age = $age;
     }
 
+    public function __destruct() {
+        echo 'Подключение к бд разорвано' . "<br>"; //Выполняется например при завершении сценария
+    }
+
     public function print() {
-        return 'Имя получилось ' . $this->name . ', а возраст ' .  $this->age;
+        return 'Имя получилось ' . $this->name . ', а возраст ' .  $this->age . "<br>";
     }
 }
 
@@ -84,8 +94,8 @@ $someAge = 33;
 $objExmpl3 = new Example3($firstName, $someAge);
 $objExmpl4 = new Example3('Вторенький', 23);
 echo $objExmpl3->print(); //Имя получилось Первенький, а возраст 33
-echo "<br>";
 echo $objExmpl4->print();//Имя получилось Вторенький, а возраст 23
+$objExmpl4->__destruct();
 echo "<br>" . "<br>";
 
 ////////////////////////////////////////////////
@@ -132,6 +142,9 @@ echo $job11->getPersonInfo();//Age is 44 and name is Vasiliy - метод кла
 echo "<br>";
 echo 'Его зовут ' . $job11->name . ', профессия - ' . $job11->job . ', а возраст - ' . $job11->age . 'года(лет)'; 
 echo "<br>" . "<br>";
+
+//Чтобы запретить изменение (в плане наследования) необходимо добавить слово final,
+//Например final class LastOne {} или метод: final protected function functionName(){}
 
 ////////////////////////////////////////////////
 //Область видимости (public, protected, private)
