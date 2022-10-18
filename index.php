@@ -434,7 +434,7 @@ require 'foreReqouire.php';
 
 
 
-//в книге остановился на статических методах
+//в книге остановился на массивах, пока не писал примеры
 //полезная ссылка https://www.youtube.com/watch?v=0CDDQTaGDhg&ab_channel=ITDoctor
 
 //в видосах на https://www.youtube.com/watch?v=nWjvvM608yw&ab_channel=ITDoctor

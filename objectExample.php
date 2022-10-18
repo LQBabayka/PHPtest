@@ -80,9 +80,9 @@ class Example3 {
         $this->age = $age;
     }
 
-    public function __destruct() {
-        echo 'Подключение к бд разорвано' . "<br>"; //Выполняется например при завершении сценария
-    }
+    // public function __destruct() {
+    //     echo 'Подключение к бд разорвано - вызывается в самом конце. Вызывается на строке ' . __LINE__ . "<br>"; //Выполняется например при завершении сценария
+    // }
 
     public function print() {
         return 'Имя получилось ' . $this->name . ', а возраст ' .  $this->age . "<br>";
@@ -95,13 +95,42 @@ $objExmpl3 = new Example3($firstName, $someAge);
 $objExmpl4 = new Example3('Вторенький', 23);
 echo $objExmpl3->print(); //Имя получилось Первенький, а возраст 33
 echo $objExmpl4->print();//Имя получилось Вторенький, а возраст 23
-$objExmpl4->__destruct();
+// $objExmpl4->__destruct(); - закоментировал(вызов и функцию) чтобы не вызывалось постоянно
 echo "<br>" . "<br>";
 
 ////////////////////////////////////////////////
 //Наследование классов
 ////////////////////////////////////////////////
 
+////Пример
+class UserExample {
+    public $name, $pasword;
+
+    function save_user(){
+        echo 'Вызвался код, который сохраняет пользователя' . "<br>";
+    }
+}
+
+class SubscriberExample extends UserExample {
+    public $phone, $email;
+
+    function displayExample() {
+        echo 'Name: ' . $this->name . "<br>";
+        echo 'Pass: ' . $this->password . "<br>";
+        echo 'Phone: ' . $this->phone . "<br>";
+        echo 'Email: ' . $this->email . "<br>";
+    }
+}
+
+$ExtendUser = new SubscriberExample;
+$ExtendUser->name = 'Freddy';
+$ExtendUser->password = 'Gibbs';
+$ExtendUser->phone = 4242;
+$ExtendUser->email = 'mtv@mm.com';
+$ExtendUser->displayExample();
+
+echo "<br>";
+////Пример с конструктором и аргументами
 //Родительский класс, принимает имя и возраст
 class Person1 {
     public $name, $age;
@@ -145,6 +174,30 @@ echo "<br>" . "<br>";
 
 //Чтобы запретить изменение (в плане наследования) необходимо добавить слово final,
 //Например final class LastOne {} или метод: final protected function functionName(){}
+
+////////////////////////////////////////////////
+//Ключевое слово parent
+////////////////////////////////////////////////
+class Dad {
+    function test(){
+        echo '[Class Dad] я твой отец' . "<br>";
+    }
+}
+
+class Son extends Dad {
+    function test(){
+        echo '[Class Son] я Люк' . "<br>";
+    }
+
+    function test2(){
+        parent::test();
+    }
+}
+
+$objectExample1 = new Son;
+$objectExample1->test();//Перезаписал родительский метод - [Class Son] я Люк
+$objectExample1->test2();//Обратился к родительскому методу - [Class Son] я Люк
+echo "<br>" . "<br>";
 
 ////////////////////////////////////////////////
 //Область видимости (public, protected, private)
@@ -228,3 +281,33 @@ echo $oldPerson->name . "<br>";//а конструкция __get даёт воз
 //SomePerson::COMPANY = 'opttorg'; такое написане выдет ошибку, так как константа не перезаписывается
 echo SomePerson::COMPANY . "<br>"; //будет Vector
 $oldPerson->showMyConst();//будет Vector
+
+////////////////////////////////////////////////////////////
+//Статические методы и свойства. Они вызываются классом, а не объектом
+////////////////////////////////////////////////////////////
+
+class StaticExample {
+    static $static_var = 'Это статическое свойство';
+
+    static function mystaticExample() {
+        echo 'Вызван классом' . "<br>";
+    }
+
+    static function staticProperty() {
+        return self::$static_var;
+    }
+
+    public function publicExample() {
+        echo 'Вызван объектом' . "<br>";
+    }
+}
+
+StaticExample::mystaticExample();//Вызван классом
+//StaticExample::publicExample(); //вызов обычного метода не из объекта сработает, ны вызовет предупреждение или ошибку
+//Используется оператор разрешения области видимости(::), 
+//статические функции применяются для выполнения действий, относящихся к самому классу, а не к конкретным экземплярам класса
+
+$testObject6 = new StaticExample;
+//Пример статического свойства
+echo StaticExample::$static_var . "<br>"; //Это статическое свойство
+echo $testObject6->staticProperty() . "<br>";//Это статическое свойство - метод обращается к переменной через ключевое слово self, как к константе
