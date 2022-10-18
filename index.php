@@ -429,12 +429,70 @@ include 'foreinclude.php';
 require 'foreReqouire.php';
 //Стоит использывать include_once и require_once чтобы не было проблем с несколькими объявлениями переменных
 
+echo "Про массивы" . "<br>" . "<br>";
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Массивы
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Способы задать массив:
+$paperA[] = 'Нулевой';
+$paperA[] = 'Первый';
+$paperA[] = 'Второй';
+$paperA[] = 'Третий';
+print_r($paperA); //Array ( [0] => Нулевой [1] => Первый [2] => Второй [3] => Третий )
+echo "<br>";
+
+$paperB[0] = 'Нулёвый';
+$paperB[1] = 'Нульцевый';
+$paperB[2] = 'Новенький';
+print_r($paperB);//Array ( [0] => Нулёвый [1] => Нульцевый [2] => Новенький )
+echo "<br>";
+
+//Добавление элементов в массив и извлечение их из массива
+$paperС[] = 'Нулевой';
+$paperС[] = 'Первый';
+$paperС[] = 'Второй';
+$paperС[] = 'Третий';
+
+
+for ($i=0; $i < 4; $i++) { 
+  echo "$i: $paperС[$i]<br>"; //0: Нулевой 1: Первый 2: Второй 3: Третий
+}
+
+//Про ассоциативные массивы:
+$paperD['name'] = 'John';
+$paperD['secondname'] = 'Smith';
+$paperD['status'] = 'friend';
+$paperD['male'] = 'male';
+
+echo $paperD['secondname'] . "<br>";
+
+//Присваивание с использованием ключевого слова array (best practise)
+$paperE = array('Совы ', 'не ', 'те ', 'кем ', 'кажутся!');
+$paperF = array(
+  'name' => 'John',
+  'secondname' => 'Smith',
+  'status' => 'friend',
+  'male' => 'male'
+);
+
+echo $paperE[4] . "<br>"; //кажутся!
+echo $paperF['name'] . "<br>";
+
+var_dump(count($paperF));// Пример подсчёта элементов массива
+
+//Форыч
+foreach ($paperF as $key => $value) {
+  echo 'Форыч. ' . 'Индекс - ' . $key . ', а значение - ' . $value . '<br>';
+}
+
+
+echo "<br>" . "<br>";
 
 
 
 
-
-//в книге остановился на массивах, пока не писал примеры
+echo "<br>" . "<br>";
+//в книге остановился на массивах c158
 //полезная ссылка https://www.youtube.com/watch?v=0CDDQTaGDhg&ab_channel=ITDoctor
 
 //в видосах на https://www.youtube.com/watch?v=nWjvvM608yw&ab_channel=ITDoctor
