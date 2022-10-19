@@ -485,14 +485,69 @@ foreach ($paperF as $key => $value) {
   echo 'Форыч. ' . 'Индекс - ' . $key . ', а значение - ' . $value . '<br>';
 }
 
+////Функция list
+//Принимает массив и прасваивает строки массива переменным, которые указаны в качестве аргументов.
+
+list($aaaaa, $bbbbb) = array('aVar', 'bVar');
+echo "aaaaa = $aaaaa, bbbbb = $bbbbb" . "<br>";//aaaaa = aVar, bbbbb = bVar
+
+//Многомерные массивы
+$products1 = array(
+  'paper' => array(
+    'copier' => 'Copier & Multi',
+    'inkjet' => 'Inkjet printer',
+    'laser'  => 'Laser printer',
+    'photo'  => 'Photographic Paper'
+  ),
+  'pens' => array(
+    'ball'   => 'Ball point',
+    'marker' => 'Markers'
+  )
+  );
+
+echo "<pre>";
+foreach($products1  as $section => $items)
+  foreach($items  as $key => $value)
+    echo "$section:\t$key\t($value)<br>";
+echo "</pre>";
+
+//Использование функций для работы с массивами
+echo is_array($products1); //вернёт 1, тк это массив
+
+echo count($products1);//вернёт 2, тк там 2 значения верхнего уровня. Второй параметр стоково равен нулю, типо 0 уровень подсчёта
+echo count($products1, 1); //вернёт 8, тк в общей сложности 8 элементов массива
+
+$sortableArrayN = array(6,4,7,2,9,1,0,3,5);
+print_r($sortableArrayN);//[0] => 6 [1] => 4 [2] => 7 [3] => 2 [4] => 9 [5] => 1 [6] => 0 [7] => 3 [8] => 5
+echo "<br>";
+echo sort($sortableArrayN); //Произошла сортировка указанного массива, при успехе возвращает 1 (или 0 при ошибке)
+print_r($sortableArrayN);//[0] => 0 [1] => 1 [2] => 2 [3] => 3 [4] => 4 [5] => 5 [6] => 6 [7] => 7 [8] => 9
+echo "<br>";
+//Для сортировки в обратном порядке необходимо использовать функцию rsort()
+//Для расположения в рандомном порядке используется shuffle()
+
+//explode() - берёт строку, содержащую несколько элементов, отделенных одиночным символом и помещает каждый элемент в массив
+//первым аргументом указывается разделитель, вторым то что нужно разделять
+$explodeExample1 = explode(' ', 'Пожалуйста раздели меня полностью');
+print_r($explodeExample1);//[0] => Пожалуйста [1] => раздели [2] => меня [3] => полностью
+echo "<br>";
+
+//compact - создаёт массив из переменных и их значений
+$sCourse = 'ОТ(и)';
+$sPid = 67843;
+$sTheme = 'port';
+
+$allVars = compact('sCourse','sPid', 'sTheme');
+print_r($allVars);//[sCourse] => ОТ(и) [sPid] => 67843 [sTheme] => port
+
+
+
+
+
+
 
 echo "<br>" . "<br>";
-
-
-
-
-echo "<br>" . "<br>";
-//в книге остановился на массивах c158
+//в книге остановился на дате и времени ст173
 //полезная ссылка https://www.youtube.com/watch?v=0CDDQTaGDhg&ab_channel=ITDoctor
 
 //в видосах на https://www.youtube.com/watch?v=nWjvvM608yw&ab_channel=ITDoctor
