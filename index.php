@@ -539,6 +539,8 @@ $sTheme = 'port';
 
 $allVars = compact('sCourse','sPid', 'sTheme');
 print_r($allVars);//[sCourse] => ОТ(и) [sPid] => 67843 [sTheme] => port
+echo "<br>" . "<br>";
+
 
 
 
@@ -547,7 +549,7 @@ print_r($allVars);//[sCourse] => ОТ(и) [sPid] => 67843 [sTheme] => port
 
 
 echo "<br>" . "<br>";
-//в книге остановился на дате и времени ст173
+//в книге остановился на перемещении файлов ст180
 //полезная ссылка https://www.youtube.com/watch?v=0CDDQTaGDhg&ab_channel=ITDoctor
 
 //в видосах на https://www.youtube.com/watch?v=nWjvvM608yw&ab_channel=ITDoctor
