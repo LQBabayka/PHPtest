@@ -32,5 +32,36 @@ echo fread($fh1, 999) . "<br>" . "<br>";
 if(!copy('testfile.txt', 'testfile-copy.txt')){
     echo 'Ошибка';
 } else {
-    echo 'Копирование произведено';
+    echo 'Копирование произведено' . "<br>";
 }
+
+//Проверка на существование файла
+$myFileName = 'C:/Users/user/Downloads/Telegram Desktop/OpenServer/domains/PHPtest/testfile.txt';
+if(file_exists($myFileName)) {
+    echo 'Файл существует'  . "<br>";
+}
+
+//Переименовывание файла - rename('current', 'newname')
+
+//Удаление файла
+if (!unlink('testfile-copy.txt')) echo 'Удаление невозможно';
+    else echo 'Файл testfile-copy.txt удалён' . "<br>" . "<br>";
+
+//////////////////////////////////////////////////////////////////
+//Обновление файла
+//////////////////////////////////////////////////////////////////
+
+//Открыть в режиме записи
+$fh = fopen('testfile.txt', 'r+') or die('error');
+$text = fgets($fh);
+$myText = 'Новая строка';
+//Перенос указателя в самый конец файла
+fseek($fh, 0, SEEK_END);
+//Сама запись
+fwrite($fh, $myText) or die('error');
+//Закрыть файл
+fclose($fh);
+
+echo 'Файл testfile.txt успешно обновлён' . "<br>";
+
+
