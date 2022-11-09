@@ -549,7 +549,7 @@ echo "<br>" . "<br>";
 
 
 echo "<br>" . "<br>";
-//в книге остановился на чтении файла целиком ст185
+//в книге остановился на транзакциях, ст 256
 //полезная ссылка https://www.youtube.com/watch?v=0CDDQTaGDhg&ab_channel=ITDoctor
 
 //в видосах на https://www.youtube.com/watch?v=nWjvvM608yw&ab_channel=ITDoctor

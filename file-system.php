@@ -17,7 +17,7 @@ fwrite($fh, $text) or die('Сбой записи файла');
 fclose($fh);
 echo "Файл 'testfile.txt' успешно записан" . "<br>";
 
-//Чтение файа
+//Чтение файла
 $fh1 = fopen('testfile.txt', 'r') or die('Нет такого файла');
 echo gettype($fh1) . "<br>"; //resource - не покажет текст
 //Проще всего прочитать текстовый файл, извлекая из него всю строку целиком. Используется функция fgets() (s в названии функции означает string)
@@ -63,5 +63,51 @@ fwrite($fh, $myText) or die('error');
 fclose($fh);
 
 echo 'Файл testfile.txt успешно обновлён' . "<br>";
+echo "<br>" . "<br>";
 
+//Чтение всего файла целиком
+echo '<pre>';//тэг, позволяющий отображать переводы строк
+echo file_get_contents("testfile.txt");
+echo '</pre>';
+echo "<br>";
+
+//echo file_get_contents("https://wiki.brealit.com/start");// Захват сайта
+
+//////////////////////////////////////////////////////////////////
+//Загрузка файла на веб-сервер
+//////////////////////////////////////////////////////////////////
+echo 'Пример загрузки файла на веб-сервер:';
+echo <<<_END
+<html><head><title>PHP Form Upload</title></head><body>
+<form method='post' action='file-system.php' enctype='multipart/form-data'>
+Выберите файл: <input type='file' name='filename' size='10'>
+<input type='submit' value='Загрузить'>
+</form>
+_END;
+//Все загружаемые на сервер файлы помещаются в ассоц-ый массив $_FILES
+
+if ($_FILES)//Есть содержимое?
+{
+  $name = $_FILES['filename']['name'];//Чтение имени файла
+
+  switch($_FILES['filename']['type'])
+  {//Проверка типа файла на изображение
+    case 'image/jpeg': $ext = 'jpg'; break;
+    case 'image/gif':  $ext = 'gif'; break;
+    case 'image/png':  $ext = 'png'; break;
+    case 'image/tiff': $ext = 'tif'; break;
+    default:           $ext = '';    break;
+  }
+  if ($ext)//Если допустимое изображение, то:
+  {
+    $n = "image.$ext";
+    move_uploaded_file($_FILES['filename']['tmp_name'], $n);//Загрузка на сервер с выбранным именем
+    echo "Uploaded image '$name' as '$n':<br>";
+    echo "<img src='$n'>";
+  }
+  else echo "'$name' is not an accepted image file";
+}
+else echo "No image has been uploaded";
+
+echo "</body></html>";//После загрузки файл появится в корне проекта
 
