@@ -549,7 +549,7 @@ echo "<br>" . "<br>";
 
 
 echo "<br>" . "<br>";
-//в книге остановился на транзакциях, ст 256
+//в книге остановился на практическом примере мускула, ст 275
 //полезная ссылка https://www.youtube.com/watch?v=0CDDQTaGDhg&ab_channel=ITDoctor
 
 //в видосах на https://www.youtube.com/watch?v=nWjvvM608yw&ab_channel=ITDoctor
